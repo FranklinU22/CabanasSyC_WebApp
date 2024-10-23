@@ -20,6 +20,8 @@ import lombok.Data;
 @Table(name="cabins")
 
 public class Cabin implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCabin")

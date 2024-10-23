@@ -6,7 +6,7 @@
 <body>
     
     <section th:fragment="toursList" class="w-full min-h-screen bg-[#4B2A1F]">
-        <h2 class="text-center pt-[80px] md:pt-[100px] md:text-[50px] text-[35px] text-white text-shadow-green">Actividades en la zona</h2>
+        <h2 class="text-center pt-[80px] md:pt-[100px] md:text-[50px] text-[35px] text-white text-shadow-green tracking-in-expand">Actividades en la zona</h2>
         <div class="grid place-items-center mt-10 md:grid-cols-5 grid-cols-2 gap-[60px] pb-5">
             <div class="cardTour md:w-[250px] md:h-[290px] w-[180px] h-[220px]" th:each="tour : ${tours}">
                 <img th:src="${tour.image}">
