@@ -93,6 +93,10 @@ body {
     background: linear-gradient(to top,#4B2A1F, transparent);
 }
 
+.shadow-navbar{
+    background: linear-gradient(to bottom,#4B2A1F, transparent);
+}
+
 .bg-gradient-home2{
     background: linear-gradient(to top, #856D5D, transparent);
 }

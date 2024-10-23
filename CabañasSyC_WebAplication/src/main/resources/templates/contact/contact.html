@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{layout/layout :: head}"/>
+<body>
+    <header th:replace="~{layout/layout :: header}"/>
+    <section th:replace="~{contact/fragments :: shadow-navbar}"/>
+    <section th:replace="~{contact/fragments :: contact}"/>
+    <section th:replace="~{contact/fragments :: informacion}"/>
+    <section th:replace="~{contact/fragments :: shadow-contact}"/>
+    <footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

@@ -15,6 +15,8 @@ import lombok.Data;
 @Table(name="cabintypes")
 
 public class CabinType implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCabinType")

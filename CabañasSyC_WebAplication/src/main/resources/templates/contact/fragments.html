@@ -1,0 +1,152 @@
+<!DOCTYPE html >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Cabañas SyC</title> 
+</head>
+<body>
+    <section th:fragment="shadow-navbar" class="relative bg-[#856D5D] h-[130px] w-full">
+        <section class="absolute w-full h-[107px] top-0 shadow-navbar select-none z-30"></section>
+    </section>
+    <section th:fragment="contact" class="w-full h-full bg-[#856D5D] pb-[70px] justify-center items-center">
+        <h2 class="text-center pt-[30px] md:text-[50px] text-[35px] text-white text-shadow-green pb-16 tracking-in-expand">Contact us</h2>
+        <div class="flex md:flex-row flex-col justify-center w-full items-center">
+            <section class="w-[90%] md:w-[50%] md:h-[500px] h-auto flex justify-center items-center md:pb-0 pb-[50px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11097.57495854956!2d-84.67277172221338!3d10.454448581477218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa00df6b7725997%3A0x6ee805c4cb524748!2sCaba%C3%B1as%20S%20y%20C!5e0!3m2!1ses-419!2scr!4v1727539039596!5m2!1ses-419!2scr"
+                    allowfullscreen="" class="card-shadow border-none w-full md:w-[700px] md:h-full h-[500px] rounded-3xl" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </section>
+            <section class="flex flex-col justify-center items-center mx-auto bg-[#4B2A1F] md:w-[40%] w-[90%] md:h-[500px] h-auto py-5 rounded-3xl">
+                <h2 class="text-center mb-8 text-white text-xl font-semibold">Send us your dates and we'll contact with you</h2>
+                <div class="w-full flex justify-center pb-5">
+                    <form class="md:w-full w-[90%]" th:action="@{/contact/save}" th:object="${contact}" method="POST">
+                        <div class="w-full flex md:flex-row flex-col justify-evenly mb-4">
+                            <div class="ps-3.5 md:ps-2.5 md:mb-0 mb-3">
+                                <label class="block mb-2 text-sm font-medium text-white" for="name">Your Name</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-regular fa-address-card text-white"></i>
+                                    </div>
+                                    <input type="text" name="name" id="name" class="bg-[#856D5D] text-white text-sm rounded-lg block w-[98%] ps-10 p-2.5 focus:border-[#856D5D]" placeholder="Please enter your name" required>
+                                </div>
+                            </div>
+                            <div class="ps-3.5 md:mb-0 mb-3">
+                                <label class="block mb-2 text-sm font-medium text-white" for="email">Your Email</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-regular fa-envelope text-white"></i>
+                                    </div>
+                                    <input type="email" name="email" id="email" class="bg-[#856D5D] text-white text-sm rounded-lg block w-[98%] ps-10 p-2.5 focus:border-[#856D5D]" placeholder="Please enter your email" required>
+                                </div>
+                            </div>
+                            <div class="ps-3.5 md:mb-0 mb-3">
+                                <label class="block mb-2 text-sm font-medium text-white" for="phone">Your Phone</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid fa-phone text-white"></i>
+                                    </div>
+                                    <input type="tel" name="phone" id="phone"class="bg-[#856D5D] text-white text-sm rounded-lg block w-[98%] ps-10 p-2.5 focus:border-[#856D5D]" placeholder="Please enter your phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex justify-start mb-4 items-center">
+                            <div class="w-full md:max-w-[30%] max-w-[40%] md:ps-6 ps-3.5">
+                                <label for="subject" class="block mb-2 text-sm font-medium text-white">Select Subject</label>
+                                <select id="idContactSubject" name="idContactSubject.idContactSubject" class="bg-[#856D5D] text-white text-sm rounded-lg block w-full p-2.5" required>
+                                    <option selected>Select Subject</option>
+                                    <option value="1">Rates</option>
+                                    <option value="2">Location</option>
+                                    <option value="3">Information</option>
+                                    <option value="4">Tours</option>
+                                    <option value="5">Transport</option>
+                                    <option value="6">Other</option>
+                                </select>
+                            </div>
+                            <div class="w-full md:pb-12 pb-5 md:ps-[80px] ps-[50px] text-center select-none">
+                                <h2 class="md:text-[50px] text-[30px] absolute borderW text-shadow-white z-0">Cabañas SyC</h2>
+                                <h2 class="md:text-[50px] text-[30px] absolute wave z-10">Cabañas SyC</h2>
+                            </div>
+                        </div>
+                        <div class="w-full flex justify-center">
+                            <div class="w-full md:max-w-[98%] ps-3.5">
+                                <label for="message" class="block mb-2 text-sm font-medium text-white">Your message</label>
+                                <textarea id="message" name="message" rows="4" class="block p-2.5 w-[98%] text-sm text-white rounded-lg bg-[#856D5D]" placeholder="Message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="w-full flex justify-start items-center pt-10 ps-5">
+                            <button type="submit" class="px-3 py-2 text-center text-white bg-[#006817] rounded-full shadow-photos-home hover:bg-[#4B2A1F] w-[155px] cursor-pointer">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>            
+        </div>
+    </section>
+    
+    <section th:fragment="informacion" class="relative bg-[#856D5D] hidden md:block">
+        <div class="container mx-auto">
+            <div class="flex md:flex-wrap">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-2xl text-white ml-4 text-shadow-white cursor-default"><i class="fas fa-person-walking mr-4"></i>Actividades en la zona</h2>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-2xl text-white ml-4 text-shadow-white cursor-default"><i class="fas fa-utensils mr-4"></i>Restaurantes y cafeterías</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto mt-12">
+            <div class="flex flex-wrap">
+                <div class="w-1/2">
+                    <div class="flex flex-wrap">
+                        <div class="w-1/2">
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Ecoglide</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque central Fortuna</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Nacional Volcán Arenal</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Arenal Natural Ecológico</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Sky Adventures</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Zoológico Arenal</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Mistico</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Los Mejengueros</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Parque Selvatura</p>
+                        </div>
+                        <div class="w-1/2">
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="flex flex-wrap">
+                        <div class="w-1/2">
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Kenko</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Pizza Cava</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Fortuneño</p>
+                            <h2 class="mt-8 md:text-2xl text-lg text-white ml-4 text-shadow-white cursor-default"><i class="fas fa-plane mr-4"></i>Aeropuertos</h2>
+                            <p class="mt-5 md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Aeropuerto Fortuna</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Aeropuerto Juan Santa María</p>
+                            <p class="md:text-lg text-xs text-white hover:text-yellow-400 text-shadow-white cursor-pointer"><i class="fas fa-check mx-4"></i>Aeropuerto San Carlos</p>
+                        </div>
+                        <div class="w-1/2">
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="mt-20 md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                            <p class="md:text-lg text-xs text-white text-right mr-5 text-shadow-white cursor-default">2,3KM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section th:fragment="shadow-contact" class="relative bg-[#856D5D] h-[130px] w-full">
+        <section class="absolute w-full h-[107px] bottom-0 bg-gradient-home select-none z-30"></section>
+    </section>
+</body>
+</html>

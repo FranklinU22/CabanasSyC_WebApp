@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/css/tours.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/contact.css}" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
 
         <script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +32,7 @@
                 </div>
                 <div class="linksSelector duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 md:me-[85px] top-[-800%] md:w-auto w-full flex items-center px-5">
                     <ul class="flex md:flex-row flex-col md:items-center md:gap-[5vw] gap-6 text-[12px] md:text-[20px]">
-                        <li><a class="navLink">[[#{nav.contact}]]</a></li>
+                        <li><a class="navLink" th:href="@{/contact/contact}">[[#{nav.contact}]]</a></li>
                         <li><a class="navLink" th:href="@{/tours/toursList}">[[#{nav.tours}]]</a></li>
                         <li><a class="navLink" th:href="@{/}" >[[#{nav.home}]]</a></li>
                         <li><a class="navLink" th:href="@{/cabins/cabinsList}">[[#{nav.cabins}]]</a></li>
@@ -295,6 +296,7 @@
                         <div class="px-4 py-6 bg-[#856D5D] flex flex-col items-center md:flex-row md:items-center md:justify-between">
                             <span class="text-sm text-white text-center">© 2024 Cabañas SyC. All Rights Reserved.</span>
                             <div class="flex mt-4 space-x-5 rtl:space-x-reverse">
+                                <span class=" text-white me-3"><span class="text-red-400">{</span> by <span class="text-red-400">}</span> CastleTech</span>
                                 <a href="#" class="text-gray-400 hover:text-gray-900 text-white">
                                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                                         <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>

@@ -45,13 +45,14 @@ public class ProjectConfig implements WebMvcConfigurer {
       registry.addViewController("/index").setViewName("index");
       registry.addViewController("/cabins/cabinsList").setViewName("/cabins/cabinsList");
       registry.addViewController("/tours/toursList").setViewName("/tours/toursList");
+      registry.addViewController("/contact/contact").setViewName("/contact/contact");
    }
    
    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((request) -> request
-            .requestMatchers("/", "/index","/cabins","/cabins/cabinsList", "/tours/toursList", "/error/**","/errores/**", "/js/**","/css/**","/imgs/**")
+            .requestMatchers("/", "/index","/cabins","/contact/**", "/contact/contact","/contact/contact/**", "/cabins/cabinsList", "/tours/toursList", "/error/**","/errores/**", "/js/**","/css/**","/imgs/**")
             .permitAll()
             )
             .formLogin((form) -> form
