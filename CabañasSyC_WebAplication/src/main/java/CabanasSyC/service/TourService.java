@@ -4,7 +4,6 @@ import java.util.List;
 import CabanasSyC.domain.Tour;
 
 public interface TourService {
-
     public List<Tour> getAllTours();
 
     public Tour getTourById(Long id);
