@@ -16,13 +16,13 @@ public class ContactServiceImpl implements ContactService {
     private ContactDao contactDao;
     
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Contact> getAllContacts() {
         return contactDao.findAll();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Contact getContactById(Long id) {
         return contactDao.findById(id).get();
     }
