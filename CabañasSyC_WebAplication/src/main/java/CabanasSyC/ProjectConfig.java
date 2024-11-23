@@ -4,8 +4,11 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
@@ -15,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import CabanasSyC.service.AuthService;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
@@ -42,11 +44,11 @@ public class ProjectConfig implements WebMvcConfigurer {
 
    public void addViewControllers(ViewControllerRegistry registry) {
       registry.addViewController("/").setViewName("index");
-      registry.addViewController("/index").setViewName("index");
-      registry.addViewController("/auth/login").setViewName("/auth/login");         
+      registry.addViewController("/index").setViewName("index");  
       registry.addViewController("/cabins/cabinsList").setViewName("/cabins/cabinsList");
       registry.addViewController("/tours/toursList").setViewName("/tours/toursList");
       registry.addViewController("/contact/contact").setViewName("/contact/contact");
+      registry.addViewController("/login").setViewName("login");    
    }
    
    @Bean
@@ -58,16 +60,18 @@ public class ProjectConfig implements WebMvcConfigurer {
          .anyRequest().authenticated()
          )
          .formLogin((form) -> form
-         .loginPage("/auth/login").permitAll())
+         .loginPage("/login").permitAll())
+         .oauth2Login((oauth2) -> oauth2
+            .loginPage("/login") 
+         )
          .logout((logout) -> logout.permitAll());
       return http.build();
    }
 
    @Autowired
-   private AuthService authService;
-
+   private UserDetailsService userDetailsService;
    @Autowired
-   public void configureGlobal(AuthenticationManagerBuilder build) throws Exception {
-      build.userDetailsService(authService).passwordEncoder(new BCryptPasswordEncoder());
+   public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
+      build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
    }
 }

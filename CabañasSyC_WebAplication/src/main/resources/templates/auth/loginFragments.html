@@ -5,5 +5,49 @@
 </head>
 <body>
     
+    <section th:fragment="login" class="flex justify-center items-center w-full h-screen bg-cover bg-center" style="background-image: url('/imgs/login/bg login.jpg');">
+        <div class="flex flex-col items-center h-[640px] w-[498px] bg-[#4B2A1F]/[.80] rounded-[54px] shadow-login p-5">
+            <a th:href="@{/index}">
+                <img class="w-[100px] mb-3 hover:scale-125 duration-500" th:src="@{/imgs/index/logoSyC.png}"/>
+            </a>
+            <h2 class="text-[#B28B09] font-merriweather text-[30px] mb-5">Welcome</h2>
+            <form class="w-full flex flex-col items-center gap-3" th:action="@{/login}" method="post">
+                <label for="username" class="flex items-center bg-[#856D5D]/[.80] rounded-full w-[381px] h-[40px] overflow-hidden">
+                    <span class="bg-[#4B2A1F] p-3 text-white">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <input type="text" id="username" name="username" required placeholder="Email" class="bg-transparent outline-none border-none text-white placeholder-white placeholder-opacity-70 flex-grow px-4">
+                </label>
+                <span class="block h-8 w-[2px] bg-white"></span>
+                <label for="password"class="flex items-center bg-[#856D5D]/[.80] rounded-full w-[381px] h-[40px] overflow-hidden ">
+                    <span class="bg-[#4B2A1F] p-3 text-white">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required placeholder="Password" class="bg-transparent outline-none border-none text-white placeholder-white placeholder-opacity-70 flex-grow px-4 focus:outline-none">
+                </label>
+                <span class="block h-8 w-[2px] bg-white"></span>
+                <button type="submit" class="rounded-full bg-[#856D5D] py-2 px-7 text-white mt-3 w-[35%]">Sign in</button>
+            </form>
+            <div th:if="${errorMessage}" class="mt-4 p-3 text-red-500 bg-red-100 rounded-lg w-full text-center">
+                <span th:text="${errorMessage}"></span>
+            </div>
+            <div class="flex items-center my-4">
+                <div class="h-[2px] w-[200px] bg-white"></div>
+                <span class="mx-4 text-white">Or</span>
+                <div class="h-[2px] w-[200px] bg-white"></div>
+            </div>
+            <span class="mx-4 text-white">Sign in with</span>
+            <a th:href="@{/oauth2/authorization/google}" class="flex items-center bg-[#856D5D] rounded-full py-2 px-7 overflow-hidden w-[35%] mt-5">
+                <i class="fab fa-google text-white"></i>
+                <span class="text-white flex-grow px-4 text-center">Google</span>
+            </a>
+            <button class="flex items-center bg-[#856D5D] rounded-full py-2 px-7 overflow-hidden w-[35%] mt-5">
+                <i class="fa-brands fa-instagram text-white"></i>
+                <span class="text-white flex-grow px-4 text-center">Instagram</span>
+            </button>
+            <span class="mx-4 text-white mt-10">Don't have an account?</span>
+        </div>
+    </section>
+    
 </body>
 </html>

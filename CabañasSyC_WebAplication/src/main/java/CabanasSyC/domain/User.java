@@ -21,7 +21,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name=" idUser")
+    @Column(name="idUser")
     private Long idUser;
 
     private String firstName;
@@ -37,10 +37,4 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idRol")
     private Rol idRol;
-
-    public User(String email, String password, Rol idRol){
-        this.email = email;
-        this.password = password;
-        this.idRol = idRol;
-    }
 }
