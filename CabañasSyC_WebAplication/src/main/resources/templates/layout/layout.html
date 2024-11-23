@@ -11,6 +11,7 @@
         <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/css/tours.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/css/contact.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
 
         <script src="https://cdn.tailwindcss.com"></script>
@@ -22,6 +23,7 @@
         <script th:src="@{/js/home/cardAnimation.js}"></script>
         <script th:src="@{/js/home/animationPauses.js}"></script>
         <script th:src="@{/js/home/cardsKnowUsAnimation.js}"></script>
+        <script th:src="@{/js/home/authMenu.js}"></script>
         <script th:src="@{/js/tours/tourCardsAnimation.js}"></script>
     </head>
     <body>
@@ -39,8 +41,24 @@
                         <li><a class="text-shadow-white navLink">[[#{nav.book}]]</a></li>
                     </ul>
                 </div>
-                <div class="z-0 flex items-center gap-6">
-                    <a><i class="fa-solid fa-user fa-lg"></i></a>
+                
+                <div class="z-0 flex items-center gap-6 relative">
+                    <div class="relative">
+                        <button onclick="toggleAuthMenu()">
+                            <i class="fa-solid fa-user fa-lg"></i>
+                        </button>
+                        <div id="authMenu" class="hidden absolute right-0 mt-2 w-48 bg-[#4B2A1F] bg-opacity-70 rounded-md shadow-lg">
+                            <div class="py-1">
+                                <a href="#" th:href="@{/login}" class="block px-4 py-2 text-sm text-white hover:bg-[#856D5D]" sec:authorize='!isAuthenticated()'><i class="fa-solid fa-right-to-bracket mr-5"></i>Login</a>
+                                <a href="#" th:href="@{/register}" class="block px-4 py-2 text-sm text-white hover:bg-[#856D5D]" sec:authorize='!isAuthenticated()'><i class="fa-solid fa-user-plus mr-5"></i>Register</a>
+                                <form method='post' th:action="@{/logout}">
+                                    <button sec:authorize='isAuthenticated()' class="w-full">
+                                        <a th:action="@{/logout}" class="block px-4 py-2 text-sm text-white hover:bg-[#856D5D] text-start" sec:authorize='isAuthenticated()'><i class="fa-solid fa-right-from-bracket mr-5"></i>Logout</a>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <i onclick="onToggleMenu(event)" class="fa-solid fa-bars md:hidden menuSelector" name="menu"></i>
                 </div>
             </nav>
@@ -63,6 +81,7 @@
                         Vive el paraíso en la Fortuna de San Carlos acompañado de tu familia en nuestras 
                         cabañas, no te pierdas de nuestra hermosa piscina y la impresionante vista al volcán Arenal.
                     </span>
+                    <h1>Welcome back, <span th:text="${username}">User</span>!</h1>
                 </div>
             </section>
             <section th:fragment="photosHome" class="absolute w-full z-10 md:top-[600px] top-[480px] select-none">
