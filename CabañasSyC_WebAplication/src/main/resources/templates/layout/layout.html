@@ -12,6 +12,8 @@
         <link rel="stylesheet" th:href="@{/css/tours.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/css/contact.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/cabinsList.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/css/admin/home.css}" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
 
         <script src="https://cdn.tailwindcss.com"></script>
@@ -25,14 +27,15 @@
         <script th:src="@{/js/home/cardsKnowUsAnimation.js}"></script>
         <script th:src="@{/js/home/authMenu.js}"></script>
         <script th:src="@{/js/tours/tourCardsAnimation.js}"></script>
+        <script th:src="@{/js/cabinsList/carousel.js}"></script>
     </head>
     <body>
         <header th:fragment="header" class="fixed z-50 w-full select-none">
-            <nav class="flex justify-between items-center w-[92%] mx-auto h-20 bg-transparent font-merriweather">
+            <nav class="navbar flex justify-between items-center w-[92%] mx-auto h-20 bg-transparent font-merriweather">
                 <div class="max-w-24">
                     <a th:href="@{/}"><img th:src="@{/imgs/index/logoSyC.png}" class="max-w-20px"></a>
                 </div>
-                <div class="linksSelector duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 md:me-[85px] top-[-800%] md:w-auto w-full flex items-center px-5">
+                <div class="linksSelector duration-500 md:static absolute md:min-h-fit min-h-[80vh] left-0 md:me-[85px] md:top-0 top-[-800%] md:w-auto w-full flex items-center px-5">
                     <ul class="flex md:flex-row flex-col md:items-center md:gap-[5vw] gap-6 text-[12px] md:text-[20px]">
                         <li><a class="navLink" th:href="@{/contact/contact}">[[#{nav.contact}]]</a></li>
                         <li><a class="navLink" th:href="@{/tours/toursList}">[[#{nav.tours}]]</a></li>
@@ -43,6 +46,9 @@
                 </div>
                 
                 <div class="z-0 flex items-center gap-6 relative">
+                    <a th:href="@{/admin/home}" sec:authorize="hasAuthority('Administrator')" class="text-shadow-white navLink">ADMIN</a>
+                    <a th:href="@{/worker/home}" sec:authorize="hasAuthority('Worker')" class="text-shadow-white navLink">Employees</a>
+                    <a th:href="@{/cleaner/home}" sec:authorize="hasAuthority('Cleaner')" class="text-shadow-white navLink">Employees</a>
                     <div class="relative">
                         <button onclick="toggleAuthMenu()">
                             <i class="fa-solid fa-user fa-lg"></i>
@@ -64,24 +70,23 @@
             </nav>
         </header>
         <main>
-            <section th:fragment="background" class="relative md:h-screen h-[80vh] w-full overflow-hidden select-none">
+            <section th:fragment="background" class="relative h-screen w-full overflow-hidden select-none">
                 <img th:src="@{/imgs/index/home background.jpg}" id="background" class="absolute md:object-fill object-cover w-full h-full z-0"/>
             </section>
             <section th:fragment="welcomePhrase" class="absolute md:w-[500px] w-full z-10 top-[200px] md:left-[110px] left-0  text-center fade-in-bottom select-none">
-                <div class="relative h-[30px] flex justify-center items-center font-merriweather">
+                <div class="relative h-[30px] flex justify-center items-center font-pinewood">
                     <h2 class="md:text-[75px] text-[60px] absolute borderW text-shadow-white z-0">Hotel</h2>
-                    <h2 class="md:text-[75px] text-[60px] absolute wave z-10">Hotel</h2>
+                    <h2 class="md:text-[75px] text-[60px] absolute wave z-10 font-pinewood">Hotel</h2>
                 </div>
-                <div class="relative h-[110px] flex justify-center items-center font-merriweather">
-                    <h2 class="md:text-[75px] text-[50px] absolute borderW text-shadow-white z-0">Cabañas SyC</h2>
-                    <h2 class="md:text-[75px] text-[50px] absolute wave z-10">Cabañas SyC</h2>
+                <div class="relative h-[110px] flex justify-center items-center font-pinewood">
+                    <h2 class="md:text-[75px] text-[50px] absolute borderW text-shadow-white z-0">Cabanas SyC</h2>
+                    <h2 class="md:text-[75px] text-[50px] absolute wave z-10 font-pinewood">Cabanas SyC</h2>
                 </div>
                 <div class="flex bg-[#7F483F] p-3 bg-opacity-[0.80] rounded-[23px] justify-center items-center md:w-[400px] w-[300px] mx-auto font-karla">
                     <span class="opacity-100 text-center text-shadow-white md:text-[15px] text-[13px]">
                         Vive el paraíso en la Fortuna de San Carlos acompañado de tu familia en nuestras 
                         cabañas, no te pierdas de nuestra hermosa piscina y la impresionante vista al volcán Arenal.
                     </span>
-                    <h1>Welcome back, <span th:text="${username}">User</span>!</h1>
                 </div>
             </section>
             <section th:fragment="photosHome" class="absolute w-full z-10 md:top-[600px] top-[480px] select-none">
@@ -93,9 +98,9 @@
             </section>
             <section th:fragment="gradient-background" class="absolute w-full h-[107px] bottom-0 bg-gradient-home select-none"></section>
 
-            <section th:fragment="cabinsTypes" class="relative w-full md:h-screen h-[130vh] h-[100%] bg-[#4B2A1F] select-none border-none">
-                <h2 class="font-merriweather text-center pt-[80px] text-[50px] text-white text-shadow-green" id="roomTypes">Room types</h2>
-                <section class="flex md:justify-evenly md:flex-row flex-col items-center mt-[80px]">
+            <section th:fragment="cabinsTypes" class="relative w-full md:h-screen h-[160vh] h-[100%] bg-[#4B2A1F] select-none border-none">
+                <h2 class="font-merriweather text-center pt-[80px] text-[60px] text-white text-shadow-green font-pinewood" id="roomTypes">Room types</h2>
+                <section class="flex md:justify-evenly md:flex-row flex-col items-center md:mt-[80px] mt-[40px]">
                     <div class="border border-[#856D5D] rounded-3xl shadow bg-[#856D5D] md:w-[405px] md:h-[491px] w-[305px] h-[491px] md:mb-0 mb-5 cardAnimation">
                         <div class="h-[65%]">
                             <div class="h-[65%]">
@@ -232,23 +237,23 @@
                 </div>
                 <section class="absolute w-full h-[107px] bottom-0 bg-gradient-home2 select-none z-30"></section>
             </section>
-            <section th:fragment="getToKnowUs" class="relative w-full md:h-screen h-[200vh] h-[100%] bg-[#856D5D] z-40 select-none">
-                <h2 class="font-merriweather text-center pt-[20px] text-[50px] text-white text-shadow-green">Get to know us</h2>
-                <section class="flex md:justify-evenly md:flex-row flex-col items-center mt-[60px]">
-                    <div class="h-[648px] w-[386px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5">
-                        <img src="/imgs/index/home image 4.jpg" class="block w-full h-[648px] object-cover transition duration-200 ease-in-out hover:blur-sm">
+            <section th:fragment="getToKnowUs" class="relative w-full md:h-screen h-[200vh] bg-[#856D5D] z-40 select-none">
+                <h2 class="font-merriweather text-center pt-[100px] text-[60px] text-white text-shadow-green font-pinewood">Get to know us</h2>
+                <section class="flex md:justify-evenly md:flex-row flex-col items-center md:mt-[20px] mt-[60px]">
+                    <div class="md:h-[648px] h-[448px] md:w-[386px] w-[286px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5">
+                        <img src="/imgs/index/home image 4.jpg" class="block w-full h-full object-cover transition duration-200 ease-in-out hover:blur-sm">
                         <div class="absolute inset-0 flex justify-center items-start pointer-events-none mt-10">
                             <h3 class="font-merriweather text-center text-[30px] text-white text-shadow-green">Explore the <br/>FACILITIES</h3>
                         </div>
                     </div>
-                    <div class="h-[648px] w-[386px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5 z-40">
-                        <img src="/imgs/index/home image 6.jpg" class="block w-full h-[648px] object-cover transition duration-200 ease-in-out hover:blur-sm">
+                    <div class="md:h-[648px] h-[448px] md:w-[386px] w-[286px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5 z-40">
+                        <img src="/imgs/index/home image 6.jpg" class="block w-full h-full object-cover transition duration-200 ease-in-out hover:blur-sm">
                         <div class="absolute inset-0 flex justify-center items-start pointer-events-none mt-10">
                             <h3 class="font-merriweather text-center text-[30px] text-white text-shadow-green">Tour our <br/>ROOMS</h3>
                         </div>
                     </div>  
-                    <div class="h-[648px] w-[386px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5">
-                        <img src="/imgs/index/home image 5.jpg" class="block w-full h-[648px] object-cover transition duration-200 ease-in-out hover:blur-sm">
+                    <div class="md:h-[648px] h-[448px] md:w-[386px] w-[286px] card-shadow relative cursor-pointer cardKnowUsAnimation md:mb-0 mb-5">
+                        <img src="/imgs/index/home image 5.jpg" class="block w-full h-full object-cover transition duration-200 ease-in-out hover:blur-sm">
                         <div class="absolute inset-0 flex justify-center items-start pointer-events-none mt-10">
                             <h3 class="font-merriweather text-center text-[30px] text-white text-shadow-green">Discover nearby <br/>ACTIVITIES</h3>
                         </div>
@@ -257,7 +262,7 @@
                 <section class="absolute w-full h-[107px] bottom-0 bg-gradient-home select-none z-30"></section>
             </section>
             <section th:fragment="footer">
-                <footer class="bg-[#4B2A1F] footer">
+                <footer class="bg-[#4B2A1F] footer bottom-0">
                     <div class="mx-auto w-full max-w-screen-xl px-4 py-6">
                         <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
                             <div class="flex justify-center items-center">

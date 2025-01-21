@@ -1,0 +1,21 @@
+<!DOCTYPE html >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Cabañas SyC</title> 
+</head>
+<body>	
+    <section th:fragment="menu" class="h-screen w-full flex flex-col justify-center items-center bg-[#0c2623]">
+        <div class="grid grid-cols-4 grid-rows-9 gap-3 h-[70%] w-[70%] mt-[50px]">
+            <div class="col-span-1 row-span-6 rounded-lg bg-[url('../../imgs/admin/Inventario.webp')] bg-cover bg-opacity-50">1</div>
+            <div class="col-span-2 row-span-3 bg-gray-800 rounded-lg bg-[url('../../imgs/admin/Tareas.webp')] bg-cover">3</div>
+            <div class="col-span-2 row-span-3 col-start-2 row-start-4 bg-gray-800 rounded-lg bg-[url('../../imgs/admin/Jornada.webp')] bg-cover bg-center">4</div>
+            <div class="col-span-1 row-span-6 col-start-4 row-start-1 bg-gray-800 rounded-lg bg-[url('../../imgs/admin/Inventario.webp')] bg-cover">5</div>
+            <div class="col-span-2 row-span-3 col-start-3 row-start-7 bg-gray-800 rounded-lg bg-[url('../../imgs/admin/Inventario.webp')] bg-cover">7</div>
+            <div class="col-span-2 row-span-3 col-start-1 row-start-7 bg-gray-800 rounded-lg bg-[url('../../imgs/admin/Inventario.webp')] bg-cover bg-center">8</div>
+        </div>
+        <section class="bg-[#0c2623] h-[130px] w-full">
+            <section class="absolute w-full h-[107px] bottom-0 bg-gradient-home select-none z-30"></section>
+        </section>  
+    <section/>    
+</body>
+</html> 

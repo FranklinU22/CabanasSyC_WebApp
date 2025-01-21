@@ -3,21 +3,64 @@
 <head th:replace="~{layout/plantilla :: head}">
     <title>Cabañas SyC</title> 
 </head>
-<body>
-    <section th:fragment="cabinList">
-        <div class="content w-full h-screen bg-[#4B2A1F]">
-            <section class="carousel-container flex justify-between items-center h-screen">
-                <div class="card">
-                    <img th:src="@{/imgs/index/home image 3.jpg}" class="h-[200px] w-200px">
+<body class="p-0 m-0">
+    <section class="w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0c2623] p-0 m-0" th:fragment="cabinList">
+        <section th:fragment="shadow-navbar" class="relative bg-[#0c2623] h-[130px] w-full">
+            <section class="absolute w-full h-[107px] top-0 shadow-navbar select-none z-30"></section>
+        </section>
+
+        <div class="relative w-full h-full bg-cover bg-center flex flex-col lg:flex-row justify-center items-center p-0 m-0">
+            <div class="absolute right-4 md:right-16 top-[20%] md:top-[26%] z-10 colibri hover">
+                <img th:src="@{/imgs/cabinsList/colibri.png}" alt="Colibrí" class="w-[120px] md:w-[250px] h-auto object-contain"/>
+            </div>
+            <div class="absolute top-[20%] md:top-[26%] right-0 z-20 plant">
+                <img th:src="@{/imgs/cabinsList/planta1.png}" alt="planta" class="object-contain w-[130px] md:w-[350px] h-auto"/>
+            </div>
+            <div class="absolute left-0 bottom-[5%] z-10 sloth">
+                <img th:src="@{/imgs/cabinsList/Sloth1.png}" alt="sloth" class="object-contain w-[150px] md:w-[300px] h-auto"/>
+            </div>
+            <div class="absolute left-[120px] md:left-[220px] bottom-[23%] md:bottom-[33%] z-20">
+                <img th:src="@{/imgs/cabinsList/frog1.png}" alt="frog" class="object-contain w-[80px] md:w-[130px] h-auto"/>
+            </div>
+            <div class="absolute left-[100px] md:left-[208px] bottom-[15%] md:bottom-[25%] z-20">
+                <img th:src="@{/imgs/cabinsList/planta2.png}" alt="planta" class="object-contain w-[80px] md:w-[120px] h-auto"/>
+            </div>
+
+            <div class="absolute top-[60px] md:top-[100px] text-center w-full z-20">
+                <h2 class="font-pinewood text-shadow-brown text-3xl md:text-5xl lg:text-6xl text-white">Our rooms</h2>
+            </div>
+
+            <div class="container slider-images flex items-center justify-center overflow-x-auto gap-4 p-4 md:p-8 z-30">
+                <div class="slider-img w-16 md:w-28 md:h-60 lg:h-80 h-72 shadow-lg rounded-lg cursor-pointer relative flex md:flex-row flex-col items-center transition-all duration-700" 
+                    th:each="cabin : ${cabins}">
+                    <div class="relative w-full h-full">
+                        <img th:src="@{${cabin.images[0].URL}}" alt="Imagen Cabaña" class="w-full h-full object-cover rounded-lg opacity-70" />
+                        <h2 class="text-shadow-brown font-pinewood w-full active-text text-sm md:text-xl text-white absolute top-1/2 md:right-[-30px] right-[-20px] transform -translate-y-1/2 rotate-90 transition-all duration-700">
+                            [[${cabin.name}]]
+                        </h2>
+                    </div>
+                    <div class="details hidden absolute bottom-5 left-5 md:w-[300px] w-[200px] h-auto text-white bg-black/60 p-4 rounded-lg shadow-md transition-all duration-500">
+                        <h2 class="md:text-lg text-sm font-semibold"><i class="fa-solid fa-tag color-gold text-sm"></i> Desde [[${cabin.cabinType.price}]]0$ la noche</h2>
+                        <p class="text-sm"><i class="fa-solid fa-person color-gold"></i> [[${cabin.cabinType.capacity}]] personas</p>
+                        <div class="icons flex gap-2 mt-3">
+                            <span><i class="fas fa-wind color-gold"></i></span>
+                            <span><i class="fas fa-tv color-gold"></i></span>
+                            <span><i class="fas fa-wifi color-gold"></i></span>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="bg-[#c2a40c] hover:bg-green-600 text-white rounded-lg shadow-lg transition-all md:w-[100px] w-[80px] h-auto p-1">
+                                Reservar
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <img th:src="@{/imgs/index/home image 3.jpg}" class="h-[200px] w-200px">
-                </div>
-                <div class="card">
-                    <img th:src="@{/imgs/index/home image 3.jpg}" class="h-[200px] w-200px">
-                </div>
-            </section>
+            </div>
         </div>
+
+        <section th:fragment="shadow-contact" class="relative bg-[#0c2623] h-[130px] w-full">
+            <section class="absolute w-full h-[107px] bottom-0 bg-gradient-home select-none z-30"></section>
+        </section>
     </section>
 </body>
-</html>
+
+</html> 

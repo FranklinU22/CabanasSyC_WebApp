@@ -1,6 +1,19 @@
 body {
     overflow-x: hidden;
 }
+.font-pinewood {
+    font-family: 'PINEWOOD', sans-serif !important;
+}
+
+@font-face {
+    font-family: 'PINEWOOD';
+    src: url('../assets/fonts/PINEWOOD.woff2') format('woff2'),
+         url('../assets/fonts/PINEWOOD.woff') format('woff'),
+         url('../assets/fonts/PINEWOOD.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 .font-merriweather {
     font-family: "Merriweather", serif;
@@ -136,6 +149,10 @@ body {
 .text-shadow-green{
     text-shadow: 0px 0px 12px #006817;
 }
+.text-shadow-brown {
+    text-shadow: 0px 0px 30px #4B2A1F, 0px 0px 60px #4B2A1F;
+}
+
 
 .carousel-item {
     display: none;
@@ -274,4 +291,8 @@ body {
 
 .no-scroll {
     overflow: hidden;
+}
+
+.color-gold {
+    color: #c2a40c;
 }

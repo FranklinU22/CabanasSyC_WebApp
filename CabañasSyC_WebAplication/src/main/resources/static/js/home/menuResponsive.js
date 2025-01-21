@@ -8,5 +8,5 @@ function onToggleMenu(e) {
         menuSelector.classList.remove('fa-xmark');
         menuSelector.classList.add('fa-bars');
     }
-    navLiks.classList.toggle('top-[-180%]');
+    navLiks.classList.toggle('top-[-200%]');
 }

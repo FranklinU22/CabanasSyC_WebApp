@@ -20,6 +20,7 @@ public class CabinController {
     @GetMapping("/cabinsList")
     public String listCabins(Model model) {
         var cabins = cabinService.getAllCabins();
+        
         model.addAttribute("cabins", cabins);
         return "/cabins/cabinsList";
     }
